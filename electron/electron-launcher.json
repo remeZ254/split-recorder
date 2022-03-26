@@ -1,0 +1,9 @@
+{
+  "devTools": {
+    "open": true,
+    "options": {
+      "mode": "detach"
+    }
+  },
+  "url": "http://localhost:4200"
+}
