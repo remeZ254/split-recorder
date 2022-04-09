@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatSelectModule } from "@angular/material/select";
 
 import { SelectVideoSourceComponent } from './select-video-source.component';
 
@@ -11,7 +12,8 @@ import { SelectVideoSourceComponent } from './select-video-source.component';
     SelectVideoSourceComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatSelectModule
   ]
 })
 export class SelectVideoSourceModule {

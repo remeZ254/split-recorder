@@ -1,19 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { DesktopCapturerSource } from "electron";
+import { from, Observable } from "rxjs";
+
+import { ElectronService } from "../../core/services/electron/electron.service";
 
 @Component({
   selector: 'app-select-video-source',
   templateUrl: './select-video-source.component.html',
   styleUrls: ['./select-video-source.component.less']
 })
-export class SelectVideoSourceComponent implements OnInit {
+export class SelectVideoSourceComponent {
+  mediaStream$: Observable<MediaStream>;
+  videoSources$: Observable<DesktopCapturerSource[]>;
 
-  constructor() {
+  constructor(private electronService: ElectronService) {
+    this.mediaStream$ = new Observable<MediaStream>();
+    this.videoSources$ = this.electronService.getVideoSources$();
   }
 
-  ngOnInit() {
+  streamSource(source: DesktopCapturerSource) {
+    this.mediaStream$ = from(navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: {
+        mandatory: {
+          chromeMediaSource: 'desktop',
+          chromeMediaSourceId: source.id
+        }
+      }
+    } as any));
   }
-
-  getVideoSources() {
-  }
-
 }

@@ -1,9 +1,18 @@
 <div class="container">
   <p>select-video-source works!</p>
 
-  <video></video>
+  <video [srcObject]="mediaStream$ | async" autoplay></video>
 
-  <button (click)="getVideoSources()">
-    Choose A Video Source
-  </button>
+  <mat-form-field *ngIf="videoSources$ | async as sources" appearance="fill">
+    <mat-label>Select Source</mat-label>
+    <mat-select>
+      <mat-option
+        *ngFor="let source of sources"
+        [value]="source"
+        (click)="streamSource(source)"
+      >
+        {{ source.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
