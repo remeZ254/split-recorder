@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxElectronModule } from 'ngx-electron';
+
 import { ElectronService } from "./services/electron/electron.service";
 
 @NgModule({
@@ -8,7 +10,8 @@ import { ElectronService } from "./services/electron/electron.service";
     ElectronService
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgxElectronModule
   ]
 })
 export class CoreModule {
